@@ -1,4 +1,5 @@
 import csv
+import json
 import math
 
 import requests
@@ -180,6 +181,44 @@ def analysis_an_company(name: str):
                 + " " + str(round_percent_neu)
 
     return sentiment
+
+def add_article():
+    positiveLinks = []
+    negativeLinks = []
+    neutralLinks = []
+    with open("PositiveLink.json", "r") as file1:
+        positiveLinks = json.load(file1)
+    file1.close()
+    with open("NegativeLink.json","r") as file2:
+        negativeLinks = json.load(file2)
+    file2.close()
+    with open("NeutralLink.json","r") as file3:
+        neutralLinks = json.load(file3)
+    file3.close()
+
+    while True:
+        link = input()
+        title = int(input())
+        if title == 1:
+            positiveLinks.append(link)
+        if title == 2:
+            negativeLinks.append(link)
+        if title == 3:
+            neutralLinks.append(link)
+        if title == 4:
+            break
+    with open("PositiveLink.json","w") as file1:
+        json.dump(positiveLinks,file1)
+    file1.close()
+    with open("NegativeLink.json","w") as file2:
+        json.dump(negativeLinks,file2)
+    file2.close()
+    with open("NeutralLink.json","w") as file3:
+        json.dump(neutralLinks,file3)
+    file3.close()
+
+
+
 
 
 
